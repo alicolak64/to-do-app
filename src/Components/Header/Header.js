@@ -9,6 +9,7 @@ function Header(props) {
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
             props.addToDo(inputRef.current.value);
+            inputRef.current.value = '';
         }
       }
     
