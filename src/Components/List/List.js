@@ -6,7 +6,7 @@ function List() {
     return (
         <section className="main">
             <input className="toggle-all" type="checkbox" />
-            <label for="toggle-all">
+            <label htmlFor="toggle-all">
                 Mark all as complete
             </label>
 
