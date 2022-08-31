@@ -7,9 +7,15 @@ import List from '../List/List'
 import Options from '../Options/Options'
 
 function ToDoApp() {
+
+  const addToDo = (toDo) => {
+  }
+
   return (
     <section className='todoapp'>
-      <Header />
+      <Header
+      addToDo={addToDo}
+       />
       <List />
       <Options />
     </section>
