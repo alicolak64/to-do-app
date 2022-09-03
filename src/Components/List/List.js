@@ -2,37 +2,45 @@ import React from 'react'
 
 import './List.css'
 
-function List() {
+function List(props) {
+
+    const clicked = (event) => {
+        event.preventDefault()
+        props.changeStatusAll()
+    }
+
     return (
         <section className="main">
-            <input className="toggle-all" type="checkbox" />
-            <label htmlFor="toggle-all">
-                Mark all as complete
-            </label>
+
+            <a href='#' onClick={clicked}>
+                <input className="toggle-all" type="checkbox" />
+                <label htmlFor="toggle-all" >
+                    Mark all as complete
+                </label>
+            </a>
 
             <ul className="todo-list">
-                <li className="completed">
+                {props.todos.map((item, index) => (
+                  <li
+                    className={(item.completed) ? 'completed' : ''}
+                    key={index}
+                  >
                     <div className="view">
-                        <input className="toggle" type="checkbox" />
-                        <label>Learn JavaScript</label>
-                        <button className="destroy"></button>
+                      <input
+                        className="toggle"
+                        name={index}
+                        type="checkbox"
+                      />
+                      <label>{item.content}</label>
+                      <button
+                        className="destroy"
+                        onClick={console.log('dsfs') }
+                        name={index}
+                      ></button>
                     </div>
-                </li>
-                <li>
-                    <div className="view">
-                        <input className="toggle" type="checkbox" />
-                        <label>Learn React</label>
-                        <button className="destroy"></button>
-                    </div>
-                </li>
-                <li>
-                    <div className="view">
-                        <input className="toggle" type="checkbox" />
-                        <label>Have a life!</label>
-                        <button className="destroy"></button>
-                    </div>
-                </li>
-            </ul>
+                  </li>
+                ))}
+              </ul>
         </section>
     )
 }
