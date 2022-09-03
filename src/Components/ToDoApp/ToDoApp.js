@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState } from 'react';
 
 import './ToDoApp.css'
 
@@ -8,7 +8,17 @@ import Options from '../Options/Options'
 
 function ToDoApp() {
 
-  const addToDo = (toDo) => {
+
+  const [todos, setTodos] = useState([])
+
+  const addToDo = (newToDo) => {
+    console.log(todos)
+    setTodos([...todos, {content  : newToDo , completed: false}])
+    console.log(todos)
+  }
+
+  const changeStatusAll = () => {
+    console.log("changeStatusAll")
   }
 
   return (
@@ -16,7 +26,10 @@ function ToDoApp() {
       <Header
       addToDo={addToDo}
        />
-      <List />
+      <List 
+      todos={todos}
+      changeStatusAll = {changeStatusAll}
+      />
       <Options />
     </section>
   )
