@@ -10,14 +10,16 @@ function ToDoApp() {
 
 
   const [todos, setTodos] = useState([])
+  const [count, setCount] = useState(0)
 
   useEffect(() => {
     const todos = JSON.parse(localStorage.getItem('todos'));
     if (todos) {
       setTodos(todos);
+      setCount(todos.filter(todo => !todo.completed).length);
     }
   }, [])
-
+  
   const addToDo = (newToDo) => {
     const toDo = {
       content: newToDo,
@@ -25,6 +27,7 @@ function ToDoApp() {
     }
     const newTodos = [...todos, toDo];
     setTodos(newTodos);
+    setCount(count + 1);
     localStorage.setItem('todos', JSON.stringify(newTodos));
   }
 
@@ -33,12 +36,16 @@ function ToDoApp() {
       return {...item, completed: !item.completed}
     })
     setTodos(newTodos);
+    setCount(count === 0 ? todos.length : 0);
     localStorage.setItem('todos', JSON.stringify(newTodos));
   }
 
   const removeItem = (item) => {
     const newTodos = todos.filter(todo => todo !== item)
     setTodos(newTodos)
+    if (!item.completed) {
+      setCount(count - 1)
+    }
     localStorage.setItem('todos', JSON.stringify(newTodos));
   }
 
@@ -51,24 +58,46 @@ function ToDoApp() {
       return todo
     })
     setTodos(newTodos)
+    setCount(count + (item.completed ? 1 : -1))
     localStorage.setItem('todos', JSON.stringify(newTodos));
   }
 
+  if (count === 0) {
 
-  return (
-    <section className='todoapp'>
-      <Header
-      addToDo = {addToDo}
-       />
-      <List 
-      todos={todos}
-      completeAllItem = {completeAllItem}
-      removeItem = {removeItem}
-      completeItem = {completeItem}
-      />
-      <Options />
-    </section>
-  )
+    return (
+      <section className='todoapp'>
+        <Header
+        addToDo = {addToDo}
+        count = {count}
+         />
+        <List 
+        todos={todos}
+        completeAllItem = {completeAllItem}
+        removeItem = {removeItem}
+        completeItem = {completeItem}
+        />
+      </section>
+    )
+
+  } else {
+    return (
+      <section className='todoapp'>
+        <Header
+        addToDo = {addToDo}
+         />
+        <List 
+        todos={todos}
+        completeAllItem = {completeAllItem}
+        removeItem = {removeItem}
+        completeItem = {completeItem}
+        />
+        <Options />
+      </section>
+    )
+  }
+
+
+  
 }
 
 export default ToDoApp
