@@ -62,6 +62,12 @@ function ToDoApp() {
     localStorage.setItem('todos', JSON.stringify(newTodos));
   }
 
+  const clearCompleted = () => {
+    const newTodos = todos.filter(todo => !todo.completed)
+    setTodos(newTodos)
+    localStorage.setItem('todos', JSON.stringify(newTodos));
+  }
+
   if (count === 0) {
 
     return (
@@ -92,6 +98,7 @@ function ToDoApp() {
         />
         <Options
         count = {count}
+        clearCompleted = {clearCompleted}
          />
       </section>
     )

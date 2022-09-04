@@ -22,7 +22,11 @@ function Options(props) {
                 </li>
             </ul>
 
-            <button className="clear-completed">
+            <button className="clear-completed" onClick={
+                (event) => {
+                    props.clearCompleted()
+                }
+            }>
                 Clear completed
             </button>
         </footer>
