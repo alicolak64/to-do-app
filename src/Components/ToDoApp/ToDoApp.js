@@ -109,6 +109,7 @@ function ToDoApp() {
          />
         <List 
         todos = {todos}
+        status = {status}
         completeAllItem = {completeAllItem}
         removeItem = {removeItem}
         completeItem = {completeItem}
