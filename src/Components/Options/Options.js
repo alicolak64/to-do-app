@@ -11,13 +11,45 @@ function Options(props) {
 
             <ul className="filters">
                 <li>
-                    <a href="#" className="selected">All</a>
+                    <a
+                        href="#"
+                        className={(props.status === 'All') ? 'selected' : ''}
+                        onClick={
+                            (event) => {
+                                event.preventDefault();
+                                props.changeStatus('All');
+                            }
+                        }
+                    >
+                        All
+                    </a>
                 </li>
                 <li>
-                    <a href="#">Active</a>
+                    <a href="#"
+                        className={(props.status === 'Active') ? 'selected' : ''}
+                        onClick={
+                            (event) => {
+                                event.preventDefault();
+                                props.changeStatus('Active');
+                            }
+                        }
+                    >
+                        Active
+                    </a>
                 </li>
                 <li>
-                    <a href="#">Completed</a>
+                    <a
+                        href="#"
+                        className={(props.status === 'Completed') ? 'selected' : ''}
+                        onClick={
+                            (event) => {
+                                event.preventDefault();
+                                props.changeStatus('Completed');
+                            }
+                        }
+                    >
+                        Completed
+                    </a>
                 </li>
             </ul>
 

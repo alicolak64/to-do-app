@@ -8,7 +8,7 @@ import Options from '../Options/Options'
 
 function ToDoApp() {
 
-  const [status , setStatus] = useState('all');
+  const [status , setStatus] = useState('All');
   const [todos, setTodos] = useState([])
   const [countActive, setCountActive] = useState(0)
   const [countCompleted, setCountCompleted] = useState(0)
@@ -75,6 +75,16 @@ function ToDoApp() {
     localStorage.setItem('todos', JSON.stringify(newTodos));
   }
 
+  const changeStatus = (nowStatus) => {
+    if(nowStatus === 'All'){
+      setStatus('All')
+    } else if(nowStatus === 'Active'){
+      setStatus('Active')
+    } else {
+      setStatus('Completed')
+    }
+  }
+
   if (countActive === 0 && countCompleted === 0) {
 
     return (
@@ -104,10 +114,11 @@ function ToDoApp() {
         completeItem = {completeItem}
         />
         <Options
+        status = {status}
         countActive = {countActive}
         countCompleted = {countCompleted}
         clearCompleted = {clearCompleted}
-        status = {status}
+        changeStatus = {changeStatus}
          />
       </section>
     )
