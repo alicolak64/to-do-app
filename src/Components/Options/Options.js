@@ -6,8 +6,8 @@ function Options() {
     return (
         <footer className="footer">
             <span className="todo-count">
-                <strong>2</strong>
-                items left
+                <span><strong>2</strong> items left </span>
+                
             </span>
 
             <ul className="filters">
