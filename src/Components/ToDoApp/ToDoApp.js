@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState , useEffect } from 'react';
 
 import './ToDoApp.css'
 
@@ -11,28 +11,47 @@ function ToDoApp() {
 
   const [todos, setTodos] = useState([])
 
+  useEffect(() => {
+    const todos = JSON.parse(localStorage.getItem('todos'));
+    if (todos) {
+      setTodos(todos);
+    }
+  }, [])
+
   const addToDo = (newToDo) => {
-    setTodos([...todos, {content  : newToDo , completed: false}])
+    const toDo = {
+      content: newToDo,
+      completed: false
+    }
+    const newTodos = [...todos, toDo];
+    setTodos(newTodos);
+    localStorage.setItem('todos', JSON.stringify(newTodos));
   }
 
   const completeAllItem = () => {
-    setTodos(todos.map(item => {
+    const newTodos = todos.map(item => {
       return {...item, completed: !item.completed}
-    }))
+    })
+    setTodos(newTodos);
+    localStorage.setItem('todos', JSON.stringify(newTodos));
   }
 
   const removeItem = (item) => {
-    setTodos(todos.filter(todo => todo !== item))
+    const newTodos = todos.filter(todo => todo !== item)
+    setTodos(newTodos)
+    localStorage.setItem('todos', JSON.stringify(newTodos));
   }
 
 
   const completeItem = (item) => {
-    setTodos(todos.map(todo => {
+    const newTodos = todos.map(todo => {
       if(todo === item){
         return {...todo, completed: !todo.completed}
       }
       return todo
-    }))
+    })
+    setTodos(newTodos)
+    localStorage.setItem('todos', JSON.stringify(newTodos));
   }
 
 
