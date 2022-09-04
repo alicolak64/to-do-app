@@ -10,13 +10,15 @@ function ToDoApp() {
 
 
   const [todos, setTodos] = useState([])
-  const [count, setCount] = useState(0)
+  const [countActive, setCountActive] = useState(0)
+  const [countCompleted, setCountCompleted] = useState(0)
 
   useEffect(() => {
     const todos = JSON.parse(localStorage.getItem('todos'));
     if (todos) {
       setTodos(todos);
-      setCount(todos.filter(todo => !todo.completed).length);
+      setCountActive(todos.filter(todo => !todo.completed).length);
+      setCountCompleted(todos.filter(todo => todo.completed).length);
     }
   }, [])
   
@@ -27,7 +29,7 @@ function ToDoApp() {
     }
     const newTodos = [...todos, toDo];
     setTodos(newTodos);
-    setCount(count + 1);
+    setCountActive(countActive + 1);
     localStorage.setItem('todos', JSON.stringify(newTodos));
   }
 
@@ -36,7 +38,8 @@ function ToDoApp() {
       return {...item, completed: !item.completed}
     })
     setTodos(newTodos);
-    setCount(count === 0 ? todos.length : 0);
+    setCountActive(countActive === 0 ? todos.length : 0);
+    setCountCompleted(countCompleted === 0 ? todos.length : 0);
     localStorage.setItem('todos', JSON.stringify(newTodos));
   }
 
@@ -44,7 +47,9 @@ function ToDoApp() {
     const newTodos = todos.filter(todo => todo !== item)
     setTodos(newTodos)
     if (!item.completed) {
-      setCount(count - 1)
+      setCountActive(countActive - 1)
+    } else {
+      setCountCompleted(countCompleted - 1)
     }
     localStorage.setItem('todos', JSON.stringify(newTodos));
   }
@@ -58,17 +63,19 @@ function ToDoApp() {
       return todo
     })
     setTodos(newTodos)
-    setCount(count + (item.completed ? 1 : -1))
+    setCountActive(countActive + (item.completed ? 1 : -1))
+    setCountCompleted(countCompleted + (item.completed ? -1 : 1))
     localStorage.setItem('todos', JSON.stringify(newTodos));
   }
 
   const clearCompleted = () => {
     const newTodos = todos.filter(todo => !todo.completed)
     setTodos(newTodos)
+    setCountCompleted(0)
     localStorage.setItem('todos', JSON.stringify(newTodos));
   }
 
-  if (count === 0) {
+  if (countActive === 0 && countCompleted === 0) {
 
     return (
       <section className='todoapp'>
@@ -97,7 +104,8 @@ function ToDoApp() {
         completeItem = {completeItem}
         />
         <Options
-        count = {count}
+        countActive = {countActive}
+        countCompleted = {countCompleted}
         clearCompleted = {clearCompleted}
          />
       </section>

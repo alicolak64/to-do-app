@@ -6,8 +6,7 @@ function Options(props) {
     return (
         <footer className="footer">
             <span className="todo-count">
-                <span><strong>{props.count}</strong> items left </span>
-                
+                <span><strong>{props.countActive}</strong> items left </span>
             </span>
 
             <ul className="filters">
@@ -22,13 +21,13 @@ function Options(props) {
                 </li>
             </ul>
 
-            <button className="clear-completed" onClick={
-                (event) => {
-                    props.clearCompleted()
-                }
-            }>
-                Clear completed
-            </button>
+            {
+                props.countCompleted > 0 &&
+                <button className="clear-completed" onClick={props.clearCompleted}>
+                    Clear completed
+                </button>
+            }
+
         </footer>
     )
 }
