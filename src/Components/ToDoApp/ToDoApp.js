@@ -22,7 +22,7 @@ function ToDoApp() {
   }
 
   const removeItem = (item) => {
-    console.log(item)
+    setTodos(todos.filter(todo => todo !== item))
   }
 
 
