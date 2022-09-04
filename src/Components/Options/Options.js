@@ -24,33 +24,40 @@ function Options(props) {
                         All
                     </a>
                 </li>
-                <li>
-                    <a href="#"
-                        className={(props.status === 'Active') ? 'selected' : ''}
-                        onClick={
-                            (event) => {
-                                event.preventDefault();
-                                props.changeStatus('Active');
+
+                {props.countActive > 0 && (
+                    <li>
+                        <a href="#"
+                            className={(props.status === 'Active') ? 'selected' : ''}
+                            onClick={
+                                (event) => {
+                                    event.preventDefault();
+                                    props.changeStatus('Active');
+                                }
                             }
-                        }
-                    >
-                        Active
-                    </a>
-                </li>
-                <li>
-                    <a
-                        href="#"
-                        className={(props.status === 'Completed') ? 'selected' : ''}
-                        onClick={
-                            (event) => {
-                                event.preventDefault();
-                                props.changeStatus('Completed');
+                        >
+                            Active
+                        </a>
+                    </li>
+                )}
+
+                {props.countCompleted > 0 && (
+                    <li>
+                        <a
+                            href="#"
+                            className={(props.status === 'Completed') ? 'selected' : ''}
+                            onClick={
+                                (event) => {
+                                    event.preventDefault();
+                                    props.changeStatus('Completed');
+                                }
                             }
-                        }
-                    >
-                        Completed
-                    </a>
-                </li>
+                        >
+                            Completed
+                        </a>
+                    </li>
+                )}
+
             </ul>
 
             {
