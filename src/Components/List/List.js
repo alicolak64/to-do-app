@@ -4,25 +4,15 @@ import './List.css'
 
 function List(props) {
 
-  const completeAllItem = (event) => {
-    event.preventDefault()
-    props.completeAllItem()
-  }
-
-  const removeItem = (event) => {
-    event.preventDefault()
-    props.removeItem()
-  }
-
-  const completeItem = (event) => {
-    event.preventDefault()
-    props.completeItem()
-  }
-
   return (
     <section className="main">
 
-      <a href='#' onClick={completeAllItem} >
+      <a href='#' onClick={
+        (event) => {
+          event.preventDefault();
+          props.completeAllItem();
+        }
+      } >
         <input className="toggle-all" type="checkbox" />
         <label htmlFor="toggle-all" >
           Mark all as complete
@@ -40,13 +30,23 @@ function List(props) {
                 className="toggle"
                 name={index}
                 type="checkbox"
-                onClick={completeItem}
+                onClick={
+                  (event) => {
+                    event.preventDefault();
+                    props.completeItem(item);
+                  }
+                }
               />
               <label>{item.content}</label>
               <button
                 className="destroy"
                 name={index}
-                onClick={removeItem}
+                onClick={
+                  (event) => {
+                    event.preventDefault();
+                    props.removeItem(item);
+                  }
+                }
               ></button>
             </div>
           </li>

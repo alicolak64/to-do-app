@@ -21,13 +21,13 @@ function ToDoApp() {
     }))
   }
 
-  const removeItem = () => {
-    console.log('removeItem')
+  const removeItem = (item) => {
+    console.log(item)
   }
 
 
-  const completeItem = () => {
-    console.log('completeItem')
+  const completeItem = (item) => {
+    console.log(item)
   }
 
 
