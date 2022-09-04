@@ -68,10 +68,9 @@ function ToDoApp() {
       <section className='todoapp'>
         <Header
         addToDo = {addToDo}
-        count = {count}
          />
         <List 
-        todos={todos}
+        todos = {todos}
         completeAllItem = {completeAllItem}
         removeItem = {removeItem}
         completeItem = {completeItem}
@@ -86,12 +85,14 @@ function ToDoApp() {
         addToDo = {addToDo}
          />
         <List 
-        todos={todos}
+        todos = {todos}
         completeAllItem = {completeAllItem}
         removeItem = {removeItem}
         completeItem = {completeItem}
         />
-        <Options />
+        <Options
+        count = {count}
+         />
       </section>
     )
   }

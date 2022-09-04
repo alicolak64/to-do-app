@@ -2,11 +2,11 @@ import React from 'react'
 
 import './Options.css'
 
-function Options() {
+function Options(props) {
     return (
         <footer className="footer">
             <span className="todo-count">
-                <span><strong>2</strong> items left </span>
+                <span><strong>{props.count}</strong> items left </span>
                 
             </span>
 
