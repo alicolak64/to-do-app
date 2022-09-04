@@ -27,7 +27,12 @@ function ToDoApp() {
 
 
   const completeItem = (item) => {
-    console.log(item)
+    setTodos(todos.map(todo => {
+      if(todo === item){
+        return {...todo, completed: !todo.completed}
+      }
+      return todo
+    }))
   }
 
 
