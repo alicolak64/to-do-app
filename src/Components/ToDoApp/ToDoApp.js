@@ -8,7 +8,7 @@ import Options from '../Options/Options'
 
 function ToDoApp() {
 
-
+  const [status , setStatus] = useState('all');
   const [todos, setTodos] = useState([])
   const [countActive, setCountActive] = useState(0)
   const [countCompleted, setCountCompleted] = useState(0)
@@ -107,6 +107,7 @@ function ToDoApp() {
         countActive = {countActive}
         countCompleted = {countCompleted}
         clearCompleted = {clearCompleted}
+        status = {status}
          />
       </section>
     )
