@@ -4,45 +4,56 @@ import './List.css'
 
 function List(props) {
 
-    const clicked = (event) => {
-        event.preventDefault()
-        props.changeStatusAll()
-    }
+  const completeAllItem = (event) => {
+    event.preventDefault()
+    props.completeAllItem()
+  }
 
-    return (
-        <section className="main">
+  const removeItem = (event) => {
+    event.preventDefault()
+    props.removeItem()
+  }
 
-            <a href='#' onClick={clicked}>
-                <input className="toggle-all" type="checkbox" />
-                <label htmlFor="toggle-all" >
-                    Mark all as complete
-                </label>
-            </a>
+  const completeItem = (event) => {
+    event.preventDefault()
+    props.completeItem()
+  }
 
-            <ul className="todo-list">
-                {props.todos.map((item, index) => (
-                  <li
-                    className={(item.completed) ? 'completed' : ''}
-                    key={index}
-                  >
-                    <div className="view">
-                      <input
-                        className="toggle"
-                        name={index}
-                        type="checkbox"
-                      />
-                      <label>{item.content}</label>
-                      <button
-                        className="destroy"
-                        onClick={console.log('dsfs') }
-                        name={index}
-                      ></button>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-        </section>
-    )
+  return (
+    <section className="main">
+
+      <a href='#' onClick={completeAllItem} >
+        <input className="toggle-all" type="checkbox" />
+        <label htmlFor="toggle-all" >
+          Mark all as complete
+        </label>
+      </a>
+
+      <ul className="todo-list">
+        {props.todos.map((item, index) => (
+          <li
+            className={(item.completed) ? 'completed' : ''}
+            key={index}
+          >
+            <div className="view">
+              <input
+                className="toggle"
+                name={index}
+                type="checkbox"
+                onClick={completeItem}
+              />
+              <label>{item.content}</label>
+              <button
+                className="destroy"
+                name={index}
+                onClick={removeItem}
+              ></button>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
 }
 
 export default List

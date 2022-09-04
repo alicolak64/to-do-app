@@ -17,18 +17,33 @@ function ToDoApp() {
     console.log(todos)
   }
 
-  const changeStatusAll = () => {
-    console.log("changeStatusAll")
+  const completeAllItem = () => {
+    setTodos(todos.map(item => {
+      return {...item, completed: !item.completed}
+    }))
   }
+
+  const removeItem = () => {
+    alert("removeItem")
+  }
+
+
+  const completeItem = () => {
+    alert("completeItem")
+    
+  }
+
 
   return (
     <section className='todoapp'>
       <Header
-      addToDo={addToDo}
+      addToDo = {addToDo}
        />
       <List 
       todos={todos}
-      changeStatusAll = {changeStatusAll}
+      completeAllItem = {completeAllItem}
+      removeItem = {removeItem}
+      completeItem = {completeItem}
       />
       <Options />
     </section>
