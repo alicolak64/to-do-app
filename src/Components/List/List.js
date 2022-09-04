@@ -7,17 +7,19 @@ function List(props) {
   return (
     <section className="main">
 
-      <a href='#' onClick={
-        (event) => {
-          event.preventDefault();
-          props.completeAllItem();
-        }
-      } >
-        <input className="toggle-all" type="checkbox" />
-        <label htmlFor="toggle-all" >
-          Mark all as complete
-        </label>
-      </a>
+      {props.todos.length > 0 && (
+        <a href='#' onClick={
+          (event) => {
+            event.preventDefault();
+            props.completeAllItem();
+          }
+        } >
+          <input className="toggle-all" type="checkbox" />
+          <label htmlFor="toggle-all" >
+            Mark all as complete
+          </label>
+        </a>
+      )}
 
       <ul className="todo-list">
         {props.todos.map((item, index) => (
