@@ -12,9 +12,7 @@ function ToDoApp() {
   const [todos, setTodos] = useState([])
 
   const addToDo = (newToDo) => {
-    console.log(todos)
     setTodos([...todos, {content  : newToDo , completed: false}])
-    console.log(todos)
   }
 
   const completeAllItem = () => {
@@ -24,13 +22,12 @@ function ToDoApp() {
   }
 
   const removeItem = () => {
-    alert("removeItem")
+    console.log('removeItem')
   }
 
 
   const completeItem = () => {
-    alert("completeItem")
-    
+    console.log('completeItem')
   }
 
 
