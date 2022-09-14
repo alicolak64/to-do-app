@@ -6,8 +6,8 @@ function Footer() {
   return (
     <footer className="info">
         <p>Click to edit a todo</p>
-        <p>Created by <a href="https://d12n.me/">Dmitry Sharabin</a></p>
-        <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+        <p>Created by <a href="https://www.linkedin.com/in/alicolak64/">Ali Colak</a></p>
+        <p>View Code on Github <a href="https://github.com/alicolak64/to-do-app">Github</a></p>
     </footer>
   )
 }
