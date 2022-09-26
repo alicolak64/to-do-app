@@ -34,9 +34,30 @@ function ToDoApp() {
   }
 
   const completeAllItem = () => {
+    let newTodos = todos 
+    const countCompletedItem = todos.filter(todo => todo.completed).length;
+    console.log(countCompletedItem)
+    if (countCompletedItem === todos.length) {
+      newTodos = todos.map(todo => {
+        return {
+          ...todo,
+          completed: false
+        }
+      })
+    } else {
+      newTodos = todos.map(todo => {
+        return {
+          ...todo,
+          completed: true
+        }
+      })
+    }
+    
+    /*
     const newTodos = todos.map(item => {
       return {...item, completed: !item.completed}
     })
+    */
     setTodos(newTodos);
     newTodos.filter(todo => !todo.completed).length === 0 ? setCountActive(0) : setCountActive(newTodos.filter(todo => !todo.completed).length);
     newTodos.filter(todo => todo.completed).length === 0 ? setCountCompleted(0) : setCountCompleted(newTodos.filter(todo => todo.completed).length);
