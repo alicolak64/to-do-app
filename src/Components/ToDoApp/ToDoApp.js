@@ -38,8 +38,8 @@ function ToDoApp() {
       return {...item, completed: !item.completed}
     })
     setTodos(newTodos);
-    setCountActive(countActive === 0 ? todos.length : 0);
-    setCountCompleted(countCompleted === 0 ? todos.length : 0);
+    newTodos.filter(todo => !todo.completed).length === 0 ? setCountActive(0) : setCountActive(newTodos.filter(todo => !todo.completed).length);
+    newTodos.filter(todo => todo.completed).length === 0 ? setCountCompleted(0) : setCountCompleted(newTodos.filter(todo => todo.completed).length);
     localStorage.setItem('todos', JSON.stringify(newTodos));
   }
 
